@@ -67,6 +67,7 @@
     "example:dev": "npm -C examples/vite run dev",
     "example:build": "npm -C examples/vite run build",
     "build": "tsup",
+    "prepare": "npm run build",
     "build:fix": "tsx scripts/postbuild.ts",
     "test": "vitest",
     "test:update": "vitest -u",
