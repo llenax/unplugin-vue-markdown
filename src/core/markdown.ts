@@ -115,7 +115,7 @@ export function createMarkdown(options: ResolvedOptions) {
 
     const env: MarkdownEnv = { id }
     let html = await md.renderAsync(raw, env)
-    const { excerpt = '', frontmatter: data = null } = env
+    const { excerpt = '', frontmatter: data = null, headers } = env
 
     if (wrapperDiv) {
       const wrapperClassesResolved = toArray(
@@ -176,6 +176,9 @@ export function createMarkdown(options: ResolvedOptions) {
 
       if (options.excerpt && !excerptKeyOverlapping && frontmatter.excerpt !== undefined)
         delete frontmatter.excerpt
+
+      if(Array.isArray(headers))
+          frontmatter.headers = headers
 
       scriptLines.push(`const frontmatter = ${JSON.stringify(frontmatter)}`)
 
